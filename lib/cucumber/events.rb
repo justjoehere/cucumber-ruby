@@ -22,6 +22,8 @@ module Cucumber
         StepDefinitionRegistered,
         StepMatch,
         TestRunFinished,
+        TestRunStarted,
+        GherkinSourceRead,
       )
     end
   end
