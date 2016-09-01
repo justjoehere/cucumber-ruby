@@ -58,6 +58,7 @@ module Cucumber
               @current_scenario_hash['description'],
               example_row_hash['line'],
               example_row_hash['id'])
+          @current_scenario_hash['tags'].merge!(@example_tags) unless @example_tags.nil?
           @gf.scenario(scenario)
         end
       end
@@ -126,6 +127,7 @@ module Cucumber
           @in_instantiated_scenario = true
           @new_example_table = true
           @current_example_rows = to_hash(examples.gherkin_statement)['rows']
+          @example_tags = to_hash(examples.gherkin_statement)['tags']
         end
       end
 
