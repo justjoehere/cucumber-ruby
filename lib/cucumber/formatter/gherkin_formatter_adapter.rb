@@ -58,7 +58,12 @@ module Cucumber
               @current_scenario_hash['description'],
               example_row_hash['line'],
               example_row_hash['id'])
-          @current_scenario_hash['tags'].merge!(@example_tags) unless @example_tags.nil?
+          if @current_scenario_hash['tags'].nil? || @current_scenario_hash['tags'].empty?
+            @current_scenario_hash['tags'] = @example_tags unless @example_tags.nil?
+          else
+            @current_scenario_hash['tags'].merge!(@example_tags) unless @example_tags.nil?
+          end
+
           @gf.scenario(scenario)
         end
       end
